@@ -36,19 +36,20 @@ pipeline {
             steps {
                 echo "Using the SonarQube plugins to scan the security of code"
             }
-            post{
-            success{
-                mail to: "yizhouh8@gmail.com",
-                subject: "Security Scan Result",
-                body: "Code Secure"
-            }
-            failure {
-                mail to: 'yizhouh8@gmail.com',
-                subject: "Security Scan Result",
-                body: "Code Insecure"
-            }
+            
         }
-        }
+        post{
+                success{
+                    mail to: "yizhouh8@gmail.com",
+                    subject: "Security Scan Result",
+                    body: "Code Secure"
+                }
+                failure {
+                    mail to: 'yizhouh8@gmail.com',
+                    subject: "Security Scan Result",
+                    body: "Code Insecure"
+                }
+            }
         stage('Deploy') {
             steps {
                 echo "Deploy the application to the testing environment specified by the environment variable $TESTING_ENVIRONMENT"
