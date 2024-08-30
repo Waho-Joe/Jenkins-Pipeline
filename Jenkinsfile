@@ -3,8 +3,6 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo "Fetch the source code from the directory path specified by the environment variable $DIRECTORY_PATH"
-                echo "Compile the code and generate any necessary artifacts"
                 echo "Using Maven to build automation"
             }
         }
@@ -14,19 +12,19 @@ pipeline {
                 echo "Running integration tests"
                 echo "Using Maven for testing"
             }
-        }
-        post{
+            post{
                 success{
                     mail to: "yizhouh8@gmail.com",
-                    subject: "Build Status Email",
+                    subject: "Test Status Email",
                     body: "Test success"
                 }
                 failure {
                     mail to: 'yizhouh8@gmail.com',
-                    subject: "Build Status Email",
+                    subject: "Test Status Email",
                     body: "Test Failed"
                 }
             }
+        }
         stage('Code Analysis') {
             steps {
                 echo "Using the SonarQube plugins to analysing the code"
@@ -36,9 +34,7 @@ pipeline {
             steps {
                 echo "Using the SonarQube plugins to scan the security of code"
             }
-            
-        }
-        post{
+            post{
                 success{
                     mail to: "yizhouh8@gmail.com",
                     subject: "Security Scan Result",
@@ -50,9 +46,9 @@ pipeline {
                     body: "Code Insecure"
                 }
             }
+        }
         stage('Deploy') {
             steps {
-                echo "Deploy the application to the testing environment specified by the environment variable $TESTING_ENVIRONMENT"
                 echo "Deploy the application to the AWS server"
             }
         }
@@ -63,7 +59,7 @@ pipeline {
         }
         stage('Deploy to Production') {
             steps {
-                echo "Deploy the code to the production environment using the environment variable: $PRODUCTION_ENVIRONMENT"
+                echo "Deploy the code to the AWS server"
             }
         }
         
