@@ -14,7 +14,8 @@ pipeline {
                 echo "Running integration tests"
                 echo "Using Maven for testing"
             }
-            post{
+        }
+        post{
                 success{
                     mail to: "yizhouh8@gmail.com",
                     subject: "Build Status Email",
@@ -26,7 +27,6 @@ pipeline {
                     body: "Test Failed"
                 }
             }
-        }
         stage('Code Analysis') {
             steps {
                 echo "Using the SonarQube plugins to analysing the code"
