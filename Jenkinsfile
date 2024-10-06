@@ -36,16 +36,22 @@ pipeline {
             }
             post{
                 success{
-                    mail to: "yizhouh8@gmail.com",
-                    subject: "Security Scan Result",
-                    body: "Code Secure"
-                    attachmentsPattern: "report/target.log"
+                    archiveArtifacts artifacts: 'report/target.log'
+                    emailext(
+                        to: "yizhouh8@gmail.com",
+                        subject: "Security Scan Result - SUCCESS",
+                        body: "The security scan was successful. The code is secure."
+                        attachmentsPattern: 'report/target.log'
+                    )
                 }
                 failure {
-                    mail to: 'yizhouh8@gmail.com',
-                    subject: "Security Scan Result",
-                    body: "Code Insecure"
-                    attachmentsPattern: "report/target.log"
+                    archiveArtifacts artifacts: 'report/target.log'
+                    emailtext(
+                        mail to: 'yizhouh8@gmail.com',
+                        subject: "Security Scan Result",
+                        body: "Code Insecure"
+                        attachmentsPattern: 'report/target.log'
+                    )
                 }
             }
         }
