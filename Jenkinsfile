@@ -46,7 +46,7 @@ pipeline {
                 failure {
                     archiveArtifacts artifacts: 'report/target.log'
                     emailext(
-                        mail to: 'yizhouh8@gmail.com',
+                        to: 'yizhouh8@gmail.com',
                         subject: "Security Scan Result",
                         body: "Code Insecure"
                     )
