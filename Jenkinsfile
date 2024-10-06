@@ -37,7 +37,7 @@ pipeline {
             post{
                 success{
                     archiveArtifacts artifacts: 'report/target.log'
-                    emailext(
+                    emailtext(
                         to: "yizhouh8@gmail.com",
                         subject: "Security Scan Result - SUCCESS",
                         body: "The security scan was successful. The code is secure."
