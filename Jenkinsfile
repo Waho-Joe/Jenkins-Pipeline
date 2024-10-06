@@ -39,7 +39,6 @@ pipeline {
                     mail to: "yizhouh8@gmail.com",
                     subject: "Security Scan Result",
                     body: "Code Secure"
-                    attachmentsPattern: "**/target/*.log"
                 }
                 failure {
                     mail to: 'yizhouh8@gmail.com',
