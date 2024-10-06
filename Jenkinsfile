@@ -36,7 +36,7 @@ pipeline {
             }
             post{
                 success{
-                    archiveArtifacts artifacts: 'report/target.log'
+                    archiveArtifacts artifacts: 'target.log'
                     emailext(
                         to: "yizhouh8@gmail.com",
                         subject: "Security Scan Result - SUCCESS",
@@ -44,7 +44,7 @@ pipeline {
                     )
                 }
                 failure {
-                    archiveArtifacts artifacts: 'report/target.log'
+                    archiveArtifacts artifacts: 'target.log'
                     emailext(
                         to: 'yizhouh8@gmail.com',
                         subject: "Security Scan Result",
